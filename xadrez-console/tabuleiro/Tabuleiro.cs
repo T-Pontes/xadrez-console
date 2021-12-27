@@ -1,5 +1,4 @@
-﻿
-using excecoes;
+﻿using excecoes;
 
 namespace tabuleiro
 {
