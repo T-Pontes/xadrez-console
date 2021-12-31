@@ -37,10 +37,10 @@ namespace xadrez_console
                     {
                         Console.BackgroundColor = fundoAlterado;
                     }
-                    //else
-                    //{
-                    //    Console.BackgroundColor = fundoOriginal;
-                    //}
+                    else
+                    {
+                        Console.BackgroundColor = fundoOriginal;
+                    }
                     ImprimirPeca(tabuleiro.Peca(i, j));
                     Console.BackgroundColor = fundoOriginal;
                 }
@@ -57,6 +57,10 @@ namespace xadrez_console
             ImprimirPecasCapturadas(partida);
             Console.WriteLine($"Turno: {partida.turno}");
             Console.WriteLine($"Aguardando jogada: {partida.jogadorAtual}");
+            if (partida.xeque)
+            {
+                Console.WriteLine("XEQUE!");
+            }
         }
 
         public static void ImprimirPecasCapturadas(PartidaDeXadrez partida)
