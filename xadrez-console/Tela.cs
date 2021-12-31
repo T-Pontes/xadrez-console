@@ -33,7 +33,7 @@ namespace xadrez_console
                 Console.Write(8 - i + " ");
                 for (int j = 0; j < tabuleiro.Colunas; j++)
                 {
-                    if (posicoesPossiveis[i,j])
+                    if (posicoesPossiveis[i, j])
                     {
                         Console.BackgroundColor = fundoAlterado;
                     }
@@ -56,10 +56,18 @@ namespace xadrez_console
             ImprimirTabuleiro(partida.tab);
             ImprimirPecasCapturadas(partida);
             Console.WriteLine($"Turno: {partida.turno}");
-            Console.WriteLine($"Aguardando jogada: {partida.jogadorAtual}");
-            if (partida.xeque)
+            if (!partida.terminada)
             {
-                Console.WriteLine("XEQUE!");
+                Console.WriteLine($"Aguardando jogada: {partida.jogadorAtual}");
+                if (partida.xeque)
+                {
+                    Console.WriteLine("XEQUE!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("XEQUEMATE!");
+                Console.WriteLine($"Vencedor: {partida.jogadorAtual}");
             }
         }
 
@@ -70,7 +78,7 @@ namespace xadrez_console
             ImprimirConjunto(partida.PecasCapturadas(Cor.Branca));
             Console.WriteLine();
             Console.Write($"Pretas: ");
-            ConsoleColor aux=Console.ForegroundColor;
+            ConsoleColor aux = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Yellow;
             ImprimirConjunto(partida.PecasCapturadas(Cor.Preta));
             Console.ForegroundColor = aux;
@@ -81,7 +89,7 @@ namespace xadrez_console
         public static void ImprimirConjunto(HashSet<Peca> conjuno)
         {
             Console.Write("[");
-            foreach(Peca x in conjuno)
+            foreach (Peca x in conjuno)
             {
                 Console.Write(x + " ");
             }
